@@ -1,0 +1,585 @@
+/* 基礎樣式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft JhengHei', 'PingFang TC', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* 網站內容樣式 */
+.website-content {
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 3rem 0;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.products h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #2c3e50;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.product-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+.add-to-cart {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.3s;
+}
+
+.add-to-cart:hover {
+    transform: scale(1.05);
+}
+
+/* Popup 覆蓋層樣式 */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.popup-overlay.show {
+    display: flex;
+}
+
+.popup-content {
+    background: white;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: popupSlideIn 0.3s ease-out;
+}
+
+@keyframes popupSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.popup-header {
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.popup-header h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-right: 2rem;
+    line-height: 1.4;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.popup-body {
+    padding: 1.5rem;
+}
+
+.popup-body p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.benefits {
+    margin: 1.5rem 0;
+}
+
+.benefit-item {
+    padding: 0.5rem 0;
+    color: #27ae60;
+    font-weight: 500;
+}
+
+.form-container {
+    margin: 1.5rem 0;
+}
+
+.email-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s;
+}
+
+.email-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.or-divider {
+    text-align: center;
+    margin: 1rem 0;
+    color: #999;
+    position: relative;
+}
+
+.or-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ddd;
+    z-index: 1;
+}
+
+.or-divider::after {
+    content: '或';
+    background: white;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.popup-footer {
+    padding: 1rem 1.5rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cta-btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 120px;
+}
+
+.cta-btn.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.cta-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.cta-btn.secondary {
+    background: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.cta-btn.secondary:hover {
+    background: #e9ecef;
+    color: #333;
+}
+
+.cta-btn.line-btn {
+    background: #00c300;
+    color: white;
+    width: 100%;
+}
+
+.cta-btn.line-btn:hover {
+    background: #00a300;
+    transform: translateY(-2px);
+}
+
+/* 底部緊急條樣式 */
+.urgency-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    padding: 1rem;
+    z-index: 999;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+}
+
+.urgency-bar.show {
+    transform: translateY(0);
+}
+
+.urgency-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.urgency-text h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.urgency-text p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.countdown-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.countdown-timer {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: rgba(255,255,255,0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.urgency-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.urgency-actions .cta-btn {
+    background: white;
+    color: #ff6b6b;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.urgency-actions .cta-btn:hover {
+    background: #f8f9fa;
+    transform: scale(1.05);
+}
+
+.urgency-actions .close-btn {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.urgency-actions .close-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* 手機版優化 */
+@media (max-width: 768px) {
+    .popup-content {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+    
+    .popup-header h3 {
+        font-size: 1.2rem;
+        margin-right: 1.5rem;
+    }
+    
+    .popup-footer {
+        flex-direction: column;
+    }
+    
+    .cta-btn {
+        width: 100%;
+    }
+    
+    .urgency-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .urgency-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .urgency-actions .cta-btn {
+        flex: 1;
+        max-width: 200px;
+    }
+    
+    .countdown-container {
+        justify-content: center;
+    }
+    
+    nav {
+        gap: 1rem;
+    }
+    
+    nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .products h3 {
+        font-size: 1.5rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 1rem;
+    }
+    
+    .popup-header {
+        padding: 1rem 1rem 0.5rem;
+    }
+    
+    .popup-body {
+        padding: 1rem;
+    }
+    
+    .popup-footer {
+        padding: 0.5rem 1rem 1rem;
+    }
+    
+    .urgency-bar {
+        padding: 0.75rem;
+    }
+    
+    .urgency-text h4 {
+        font-size: 1rem;
+    }
+    
+    .urgency-text p {
+        font-size: 0.8rem;
+    }
+    
+    .countdown-timer {
+        font-size: 1rem;
+        min-width: 50px;
+    }
+}
+
+/* 動畫效果 */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* 防止滾動 */
+body.popup-open {
+    overflow: hidden;
+}
+
+/* 高對比度模式支援 */
+@media (prefers-contrast: high) {
+    .popup-content {
+        border: 2px solid #000;
+    }
+    
+    .cta-btn.primary {
+        background: #000;
+        color: #fff;
+    }
+    
+    .urgency-bar {
+        background: #000;
+        color: #fff;
+    }
+}
+
+/* 減少動畫模式支援 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

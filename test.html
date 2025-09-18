@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>頁面行銷規劃系統 - 測試頁面</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .test-controls {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            z-index: 2000;
+            max-width: 300px;
+        }
+        
+        .test-controls h4 {
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+        
+        .test-btn {
+            display: block;
+            width: 100%;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .test-btn:hover {
+            background: #0056b3;
+        }
+        
+        .test-btn.danger {
+            background: #dc3545;
+        }
+        
+        .test-btn.danger:hover {
+            background: #c82333;
+        }
+        
+        .test-btn.success {
+            background: #28a745;
+        }
+        
+        .test-btn.success:hover {
+            background: #218838;
+        }
+        
+        .status {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .status-item {
+            margin: 0.25rem 0;
+        }
+        
+        .status-label {
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .status-value {
+            color: #90EE90;
+        }
+    </style>
+</head>
+<body>
+    <!-- 測試控制面板 -->
+    <div class="test-controls">
+        <h4>🧪 測試控制面板</h4>
+        
+        <button class="test-btn" onclick="triggerWelcomePopup()">觸發歡迎彈窗</button>
+        <button class="test-btn" onclick="triggerUrgencyBar()">觸發緊急條</button>
+        <button class="test-btn" onclick="triggerExitPopup()">觸發退出彈窗</button>
+        <button class="test-btn" onclick="simulateAddToCart()">模擬加入購物車</button>
+        <button class="test-btn" onclick="resetCountdown()">重置倒數計時器</button>
+        
+        <button class="test-btn danger" onclick="clearAllData()">清除所有資料</button>
+        <button class="test-btn success" onclick="showStatus()">顯示狀態</button>
+        <button class="test-btn" onclick="showAnalytics()">顯示分析</button>
+        <button class="test-btn" onclick="exportData()">匯出資料</button>
+        
+        <div class="status" id="status-display" style="display: none;">
+            <div class="status-item">
+                <span class="status-label">頁面停留時間:</span>
+                <span class="status-value" id="time-status">0 秒</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">已觸發歡迎彈窗:</span>
+                <span class="status-value" id="welcome-status">否</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">已觸發緊急條:</span>
+                <span class="status-value" id="urgency-status">否</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">已觸發退出彈窗:</span>
+                <span class="status-value" id="exit-status">否</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">已加入購物車:</span>
+                <span class="status-value" id="cart-status">否</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">倒數計時器狀態:</span>
+                <span class="status-value" id="countdown-status">未啟動</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模擬網站內容 -->
+    <div class="website-content">
+        <header>
+            <h1>測試頁面 - 頁面行銷規劃系統</h1>
+            <nav>
+                <a href="#home">首頁</a>
+                <a href="#products">商品</a>
+                <a href="#about">關於我們</a>
+                <a href="#contact">聯絡我們</a>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="hero">
+                <h2>歡迎來到測試頁面</h2>
+                <p>這個頁面用於測試頁面行銷規劃系統的各項功能</p>
+                <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                    <h3>測試說明：</h3>
+                    <ul style="margin-top: 1rem; text-align: left;">
+                        <li>歡迎彈窗會在 15-30 秒後自動觸發</li>
+                        <li>緊急條會在停留 45 秒或加入購物車後觸發</li>
+                        <li>退出彈窗會在滑鼠移到瀏覽器上方時觸發</li>
+                        <li>倒數計時器會持續 10 分鐘，刷新頁面不會重置</li>
+                        <li>使用右上角的控制面板可以手動觸發各項功能</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="products">
+                <h3>測試商品</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/200x200/ff6b6b/ffffff?text=商品1" alt="商品1">
+                        <h4>測試商品 1</h4>
+                        <p class="price">NT$ 1,000</p>
+                        <button class="add-to-cart">加入購物車</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/200x200/4ecdc4/ffffff?text=商品2" alt="商品2">
+                        <h4>測試商品 2</h4>
+                        <p class="price">NT$ 1,500</p>
+                        <button class="add-to-cart">加入購物車</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/200x200/45b7d1/ffffff?text=商品3" alt="商品3">
+                        <h4>測試商品 3</h4>
+                        <p class="price">NT$ 2,000</p>
+                        <button class="add-to-cart">加入購物車</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section style="margin-top: 3rem; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <h3>功能測試區域</h3>
+                <p>這個區域用於測試各種互動功能：</p>
+                <div style="margin-top: 1rem;">
+                    <button class="add-to-cart" style="margin-right: 1rem;">測試加入購物車</button>
+                    <button onclick="scrollToTop()" style="padding: 0.75rem 1.5rem; background: #28a745; color: white; border: none; border-radius: 25px; cursor: pointer;">滾動到頂部</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 進站階段 Popup (15-30秒後觸發) -->
+    <div id="welcome-popup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>🎁 首購優惠！立即綁定 LINE 拿 $50 折扣</h3>
+                <button class="close-btn" onclick="closePopup('welcome-popup')">&times;</button>
+            </div>
+            <div class="popup-body">
+                <p>歡迎來到我們的商店！綁定 LINE 即可獲得 $50 折扣券，立即享受優惠購物體驗。</p>
+                <div class="benefits">
+                    <div class="benefit-item">✓ 立即獲得 $50 折扣券</div>
+                    <div class="benefit-item">✓ 專屬優惠通知</div>
+                    <div class="benefit-item">✓ 24/7 客服支援</div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button class="cta-btn primary" onclick="bindLine()">立即領取，一鍵綁定 LINE</button>
+                <button class="cta-btn secondary" onclick="closePopup('welcome-popup')">稍後再說</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 停留/互動階段 底部條 (45秒後觸發) -->
+    <div id="urgency-bar" class="urgency-bar">
+        <div class="urgency-content">
+            <div class="urgency-text">
+                <h4>🔥 限時優惠！快閃折扣</h4>
+                <p>現在結帳，享免運優惠</p>
+            </div>
+            <div class="countdown-container">
+                <span class="countdown-label">優惠倒數：</span>
+                <div class="countdown-timer" id="countdown-timer">
+                    <span id="minutes">10</span>:<span id="seconds">00</span>
+                </div>
+            </div>
+            <div class="urgency-actions">
+                <button class="cta-btn primary" onclick="goToCheckout()">立即結帳</button>
+                <button class="close-btn" onclick="closeUrgencyBar()">&times;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 離站階段 Popup (Exit Intent) -->
+    <div id="exit-popup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>等等！帶走你的專屬優惠 🎉</h3>
+                <button class="close-btn" onclick="closePopup('exit-popup')">&times;</button>
+            </div>
+            <div class="popup-body">
+                <p>別急著離開！輸入 email 或綁定 LINE，即可獲得 $100 折扣券，讓你的購物更划算。</p>
+                <div class="form-container">
+                    <input type="email" id="exit-email" placeholder="請輸入您的 email" class="email-input">
+                    <div class="or-divider">或</div>
+                    <button class="cta-btn line-btn" onclick="bindLineExit()">綁定 LINE 領取</button>
+                </div>
+                <div class="benefits">
+                    <div class="benefit-item">✓ 立即獲得 $100 折扣券</div>
+                    <div class="benefit-item">✓ 免運費優惠</div>
+                    <div class="benefit-item">✓ 專屬會員福利</div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button class="cta-btn primary" onclick="claimDiscount()">領取折扣，繼續逛逛</button>
+                <button class="cta-btn secondary" onclick="closePopup('exit-popup')">不需要，直接離開</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入分離的 JavaScript 檔案 -->
+    <script src="welcome-popup.js"></script>
+    <script src="urgency-bar.js"></script>
+    <script src="exit-popup.js"></script>
+    <script src="main.js"></script>
+    <script>
+        // 測試功能函數
+        function triggerWelcomePopup() {
+            if (window.welcomePopup) {
+                window.welcomePopup.triggerManually();
+            }
+        }
+        
+        function triggerUrgencyBar() {
+            if (window.urgencyBar) {
+                window.urgencyBar.triggerManually();
+            }
+        }
+        
+        function triggerExitPopup() {
+            if (window.exitPopup) {
+                window.exitPopup.triggerManually();
+            }
+        }
+        
+        function simulateAddToCart() {
+            if (window.urgencyBar) {
+                window.urgencyBar.tracking.hasAddedToCart = true;
+                window.urgencyBar.checkTrigger();
+                alert('已模擬加入購物車！');
+            }
+        }
+        
+        function resetCountdown() {
+            if (window.urgencyBar) {
+                window.urgencyBar.resetCountdown();
+                alert('倒數計時器已重置為 10 分鐘！');
+            }
+        }
+        
+        function clearAllData() {
+            if (confirm('確定要清除所有資料嗎？這會重置所有狀態。')) {
+                sessionStorage.clear();
+                localStorage.clear();
+                location.reload();
+            }
+        }
+        
+        function showStatus() {
+            const statusDisplay = document.getElementById('status-display');
+            if (window.marketingSystem) {
+                const status = window.marketingSystem.getSystemStatus();
+                document.getElementById('time-status').textContent = (status.modules.welcome?.timeOnPage || 0) + ' 秒';
+                document.getElementById('welcome-status').textContent = status.modules.welcome?.hasTriggered ? '是' : '否';
+                document.getElementById('urgency-status').textContent = status.modules.urgency?.hasTriggered ? '是' : '否';
+                document.getElementById('exit-status').textContent = status.modules.exit?.hasTriggered ? '是' : '否';
+                document.getElementById('cart-status').textContent = status.modules.urgency?.hasAddedToCart ? '是' : '否';
+                document.getElementById('countdown-status').textContent = status.countdown?.isActive ? '運行中' : '未啟動';
+                
+                statusDisplay.style.display = statusDisplay.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // 定期更新狀態顯示
+        setInterval(() => {
+            if (window.marketingSystem && document.getElementById('status-display').style.display === 'block') {
+                showStatus();
+            }
+        }, 1000);
+        
+        // 新增測試按鈕
+        function showAnalytics() {
+            if (window.marketingSystem) {
+                const analytics = window.marketingSystem.getAnalytics();
+                console.log('分析資料:', analytics);
+                alert('分析資料已輸出到控制台，請按 F12 查看');
+            }
+        }
+        
+        function exportData() {
+            if (window.marketingSystem) {
+                window.marketingSystem.exportData();
+            }
+        }
+    </script>
+</body>
+</html>

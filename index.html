@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>頁面行銷規劃系統</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 模擬網站內容 -->
+    <div class="website-content">
+        <header>
+            <h1>我的電商網站</h1>
+            <nav>
+                <a href="#home">首頁</a>
+                <a href="#products">商品</a>
+                <a href="#about">關於我們</a>
+                <a href="#contact">聯絡我們</a>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="hero">
+                <h2>歡迎來到我們的商店</h2>
+                <p>發現最優質的商品，享受購物樂趣</p>
+            </section>
+            
+            <section class="products">
+                <h3>熱門商品</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/200x200" alt="商品1">
+                        <h4>商品名稱 1</h4>
+                        <p class="price">NT$ 1,000</p>
+                        <button class="add-to-cart">加入購物車</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/200x200" alt="商品2">
+                        <h4>商品名稱 2</h4>
+                        <p class="price">NT$ 1,500</p>
+                        <button class="add-to-cart">加入購物車</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/200x200" alt="商品3">
+                        <h4>商品名稱 3</h4>
+                        <p class="price">NT$ 2,000</p>
+                        <button class="add-to-cart">加入購物車</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 進站階段 Popup (15-30秒後觸發) -->
+    <div id="welcome-popup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>🎁 首購優惠！立即綁定 LINE 拿 $50 折扣</h3>
+                <button class="close-btn" onclick="closePopup('welcome-popup')">&times;</button>
+            </div>
+            <div class="popup-body">
+                <p>歡迎來到我們的商店！綁定 LINE 即可獲得 $50 折扣券，立即享受優惠購物體驗。</p>
+                <div class="benefits">
+                    <div class="benefit-item">✓ 立即獲得 $50 折扣券</div>
+                    <div class="benefit-item">✓ 專屬優惠通知</div>
+                    <div class="benefit-item">✓ 24/7 客服支援</div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button class="cta-btn primary" onclick="bindLine()">立即領取，一鍵綁定 LINE</button>
+                <button class="cta-btn secondary" onclick="closePopup('welcome-popup')">稍後再說</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 停留/互動階段 底部條 (45秒後觸發) -->
+    <div id="urgency-bar" class="urgency-bar">
+        <div class="urgency-content">
+            <div class="urgency-text">
+                <h4>🔥 限時優惠！快閃折扣</h4>
+                <p>現在結帳，享免運優惠</p>
+            </div>
+            <div class="countdown-container">
+                <span class="countdown-label">優惠倒數：</span>
+                <div class="countdown-timer" id="countdown-timer">
+                    <span id="minutes">10</span>:<span id="seconds">00</span>
+                </div>
+            </div>
+            <div class="urgency-actions">
+                <button class="cta-btn primary" onclick="goToCheckout()">立即結帳</button>
+                <button class="close-btn" onclick="closeUrgencyBar()">&times;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 離站階段 Popup (Exit Intent) -->
+    <div id="exit-popup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>等等！帶走你的專屬優惠 🎉</h3>
+                <button class="close-btn" onclick="closePopup('exit-popup')">&times;</button>
+            </div>
+            <div class="popup-body">
+                <p>別急著離開！輸入 email 或綁定 LINE，即可獲得 $100 折扣券，讓你的購物更划算。</p>
+                <div class="form-container">
+                    <input type="email" id="exit-email" placeholder="請輸入您的 email" class="email-input">
+                    <div class="or-divider">或</div>
+                    <button class="cta-btn line-btn" onclick="bindLineExit()">綁定 LINE 領取</button>
+                </div>
+                <div class="benefits">
+                    <div class="benefit-item">✓ 立即獲得 $100 折扣券</div>
+                    <div class="benefit-item">✓ 免運費優惠</div>
+                    <div class="benefit-item">✓ 專屬會員福利</div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button class="cta-btn primary" onclick="claimDiscount()">領取折扣，繼續逛逛</button>
+                <button class="cta-btn secondary" onclick="closePopup('exit-popup')">不需要，直接離開</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入分離的 JavaScript 檔案 -->
+    <script src="welcome-popup.js"></script>
+    <script src="urgency-bar.js"></script>
+    <script src="exit-popup.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
