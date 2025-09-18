@@ -23,11 +23,16 @@
 
 ```
 popup/
-├── index.html          # 主要頁面
-├── test.html           # 測試頁面
-├── style.css           # 樣式檔案
-├── script.js           # JavaScript 邏輯
-└── README.md           # 說明文件
+├── index.html              # 主要頁面
+├── test.html               # 測試頁面
+├── style.css               # 樣式檔案
+├── welcome-popup.js        # 歡迎彈窗模組
+├── urgency-bar.js          # 緊急條模組
+├── exit-popup.js           # 退出彈窗模組
+├── main.js                 # 主要協調模組
+├── script.js               # 原始整合版本（保留）
+├── README.md               # 說明文件
+└── README-SEPARATED.md     # 分離版本說明文件
 ```
 
 ## 🚀 快速開始
@@ -37,23 +42,23 @@ popup/
    - 開啟 `test.html` 進行功能測試
 
 2. **整合到現有網站**：
-   - 複製 `style.css` 和 `script.js` 到您的專案
+   - 複製 `style.css` 和 JavaScript 檔案到您的專案
    - 在 HTML 中引入這些檔案
    - 根據需要調整樣式和觸發條件
 
 ## 🛠️ 自訂設定
 
 ### 修改觸發時間
-在 `script.js` 中調整以下參數：
+在各個 JavaScript 模組中調整參數：
 
 ```javascript
-// 歡迎彈窗觸發時間（秒）
+// 歡迎彈窗觸發時間（秒）- welcome-popup.js
 const randomDelay = Math.random() * 15 + 15; // 15-30秒
 
-// 緊急條觸發時間（秒）
+// 緊急條觸發時間（秒）- urgency-bar.js
 this.tracking.timeOnPage >= 45
 
-// 倒數計時器時間（秒）
+// 倒數計時器時間（秒）- urgency-bar.js
 this.countdownTime = 10 * 60; // 10分鐘
 ```
 
@@ -92,6 +97,11 @@ this.countdownTime = 10 * 60; // 10分鐘
 
 ## 🔧 技術特色
 
+### 模組化架構
+- 四個獨立的 JavaScript 模組
+- 每個功能都可以單獨使用
+- 便於維護和擴展
+
 ### 防重複觸發
 - 同一訪客一天最多觸發一次 popup
 - 使用 `sessionStorage` 記錄狀態
@@ -127,6 +137,8 @@ this.countdownTime = 10 * 60; // 10分鐘
 - 重置倒數計時器
 - 清除所有資料
 - 顯示即時狀態
+- 顯示分析資料
+- 匯出資料
 
 ## 📊 分析整合
 
